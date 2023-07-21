@@ -1,0 +1,8 @@
+ansible==8.0.0
+ansible-compat==3.0.2
+ansible-lint
+molecule-docker
+molecule-vagrant
+docker
+python-vagrant
+pywinrm

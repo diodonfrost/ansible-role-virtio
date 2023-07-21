@@ -1,0 +1,6 @@
+---
+# defaults file for diodonfrost.virtio
+
+virtio_iso_url: "{{ _virtio_iso_url }}"
+
+virtio_update: false

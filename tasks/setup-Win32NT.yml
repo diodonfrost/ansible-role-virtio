@@ -1,0 +1,34 @@
+---
+- name: Windows | Download Virtio ISO
+  ansible.windows.win_get_url:
+    url: '{{ virtio_iso_url }}'
+    dest: "{{ virtio_iso_dest }}"
+    force: "{{ virtio_update }}"
+    follow_redirects: all
+
+- name: Windows | Mount Virtio ISO
+  community.windows.win_disk_image:
+    image_path: "{{ virtio_iso_dest }}"
+    state: present
+  register: disk_image_out
+  changed_when: false
+
+- name: Windows | Install Virtio
+  ansible.windows.win_package:
+    path: '{{ disk_image_out.mount_paths[0] }}virtio-win-gt-x64.msi'
+    product_id: BC3373F8-48ED-490D-9431-0D02425BA607
+    state: present
+
+- name: Windows | Install Qemu Guest Agent and Spice agent
+  ansible.windows.win_package:
+    path: '{{ disk_image_out.mount_paths[0] }}virtio-win-guest-tools.exe'
+    product_id: C4F21E04-480B-47BC-B592-4F9B43B124C8
+    arguments: /install /passive /norestart
+    creates_path: "{{ ansible_env['ProgramFiles'] }}\\qemu-ga"
+    state: present
+
+- name: Windows | Unmount virtio-win.iso
+  community.windows.win_disk_image:
+    image_path: "{{ virtio_iso_dest }}"
+    state: absent
+  changed_when: false
