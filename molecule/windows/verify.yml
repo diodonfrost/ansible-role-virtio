@@ -14,9 +14,16 @@
         state: directory
       register: qemu_path_result
 
+    - name: Windows | Spice-guest-agent folder should be present
+      ansible.windows.win_file:
+        path: "{{ ansible_env['ProgramFiles(x86)'] }}\\Spice\ Guest\ Tools"
+        state: directory
+      register: spice_path_result
+
     - name: Windows | Verify commands outputs
       assert:
         that:
           - not virtio_path_result.changed
           - not qemu_path_result.changed
+          - not spice_path_result.changed
         success_msg: "All tests passed"
