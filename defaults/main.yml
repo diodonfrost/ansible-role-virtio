@@ -1,6 +1,8 @@
 ---
 # defaults file for diodonfrost.virtio
 
+# URL to download virtio iso
 virtio_iso_url: "{{ _virtio_iso_url }}"
 
+# Update virtio if it is already installed
 virtio_update: false
