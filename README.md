@@ -1,6 +1,5 @@
 # ansible-role-virtio
 
-[![molecule](https://github.com/diodonfrost/ansible-role-virtio/workflows/molecule/badge.svg)](https://github.com/diodonfrost/ansible-role-virtio/actions)
 [![Ansible Galaxy](https://img.shields.io/badge/galaxy-diodonfrost.virtio-660198.svg)](https://galaxy.ansible.com/diodonfrost/virtio)
 
 This role provide a compliance for install Virtio drivers on your target host.
